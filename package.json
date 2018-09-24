@@ -1,0 +1,30 @@
+{
+  "name": "yt-mp3",
+  "version": "1.0.0",
+  "description": "Convert YouTube videos to Mp3s!",
+  "main": "download.js",
+  "dependencies": {
+    "delay": "^3.1.0",
+    "ytdl-getinfo": "^1.1.0",
+    "video-converter": "^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Broken-Admin/Youtube-MP3.git"
+  },
+  "keywords": [
+    "youtube",
+    "mp3",
+    "convert",
+    "download",
+    "mp4",
+    "you",
+    "tube"
+  ],
+  "author": "Broken \"Spaghetti\" Admin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Broken-Admin/Youtube-MP3/issues"
+  },
+  "homepage": "https://github.com/Broken-Admin/Youtube-MP3#readme"
+}
