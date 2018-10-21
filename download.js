@@ -6,9 +6,16 @@ if (!args[0] || !args[1]) {
 }
 const fs = require('fs');
 const ytdl = require('ytdl-core');
-const { getInfo } = require('ytdl-getinfo')
+const {
+  getInfo
+} = require('ytdl-getinfo')
 const converter = require('video-converter')
 const Delay = require('delay')
+if (!fs.readFile('./config.json', (err, data) => {
+    return (data ? true : false)
+  })) {
+  throw ('You must have a config file specifying the path to FFMPEG using \"ffmpegPath\".')
+}
 const config = require('./config.json')
 
 function secToMs(sec) {
@@ -28,8 +35,8 @@ async function run(seconds) {
 }
 getInfo(args[0]).then(i => {
   let dur = i.items[0].duration // Duration of video in seconds.
-  let durMin = dur/60 // Duration of video in minutes. (not floored)
-  let waitTime = Math.floor(durMin.toFixed(1)*1.6) 
+  let durMin = dur / 60 // Duration of video in minutes. (not floored)
+  let waitTime = Math.floor(durMin.toFixed(1) * 1.6)
   // We round the durMins to the tenth place.
   // 5 seconds for every 3 minutes. (or such) | (5/3 = 1.6666667) (We round that to 1.6)
   // We floor to at least have a rational integer.
