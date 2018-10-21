@@ -11,11 +11,14 @@ const {
 } = require('ytdl-getinfo')
 const converter = require('video-converter')
 const Delay = require('delay')
-if (!fs.readFile('./config.json', (err, data) => {
-    return (data ? true : false)
-  })) {
-  throw ('You must have a config file specifying the path to FFMPEG using \"ffmpegPath\".')
-}
+var configExists
+fs.readFile('config.json', (err, data) => {
+  if(data ? false : true){ // Return true if 'data' doesn't exist
+    console.log('Must provide a config file, with an object with the attribute \"ffmpegPath\" leading to the path of which you have FFMPEG stored.')
+    process.exit() // If evaluates to true, send above to logs, and exit the process.
+  }
+})
+delete(configExists)
 const config = require('./config.json')
 
 function secToMs(sec) {
