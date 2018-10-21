@@ -19,13 +19,17 @@ fs.readFile('config.json', (err, data) => {
   }
 })
 delete(configExists)
+function minutesToSeconds(min){ // Line 32
+  return(min * 60)
+}
 const config = require('./config.json')
 converter.setFfmpegPath(config.ffmpegPath, function (err) {
   if (err) throw err;
 });
-async function run(seconds) {
+async function run(min) {
   await ytdl(`${args[0]}`)
     .pipe(fs.createWriteStream(`./down/${args[1]}.mp4`))
+    await minutesToSeconds(min) // convert the minutes to seconds, and delay for that allotted time.
   await converter.convert(`./down/${args[1]}.mp4`, `./out/${args[1]}.mp3`, function (err) {
     if (err) throw err;
     console.log(`\"${args[1]}.mp3\" downloaded!`)
@@ -37,6 +41,6 @@ getInfo(args[0]).then(i => {
   let waitTime = Math.floor(durMin.toFixed(1) * 1.6)
   // We round the durMins to the tenth place.
   // 5 seconds for every 3 minutes. (or such) | (5/3 = 1.6666667) (We round that to 1.6)
-  // We floor to at least have a rational integer.
+  // We floor to at least have a rational (whole) integer.
   run(waitTime)
 })
