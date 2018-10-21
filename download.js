@@ -20,17 +20,12 @@ fs.readFile('config.json', (err, data) => {
 })
 delete(configExists)
 const config = require('./config.json')
-
-function secToMs(sec) {
-  return (sec * 1000)
-}
 converter.setFfmpegPath(config.ffmpegPath, function (err) {
   if (err) throw err;
 });
 async function run(seconds) {
   await ytdl(`${args[0]}`)
     .pipe(fs.createWriteStream(`./down/${args[1]}.mp4`))
-  await Delay(secToMs(seconds))
   await converter.convert(`./down/${args[1]}.mp4`, `./out/${args[1]}.mp3`, function (err) {
     if (err) throw err;
     console.log(`\"${args[1]}.mp3\" downloaded!`)
