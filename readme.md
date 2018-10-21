@@ -1,6 +1,9 @@
 # YouTube To Mp3
 ## Convert YouTube videos to Mp3s!
-### I am not responsible for your use of this tool.
+
+## NOTICE
+- The owner of this repository, Alexander Resurreccion, is not liable for your use of this tool.
+- This repository is for educational and informational use only.
 
 ## NPM Requirements
 - delay
